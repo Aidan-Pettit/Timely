@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
-function LeaperInput({placeholder, keyboardType, autoFocus, onChangeText, value}, ...props) {
+function Input({placeholder, keyboardType, autoFocus, onChangeText, value}, ...props) {
   return (
     <View style={styles.container}>
         <TextInput style={styles.textInput} 
@@ -19,7 +19,7 @@ function LeaperInput({placeholder, keyboardType, autoFocus, onChangeText, value}
 
 const styles = StyleSheet.create({
   container: {
-      width: '90%',
+      width: 300,
       height: 40,
       justifyContent: 'center',
       borderColor: 'darkgreen',
@@ -38,4 +38,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default LeaperInput;
+export default Input;

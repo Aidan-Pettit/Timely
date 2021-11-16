@@ -4,9 +4,9 @@
     "slug": "Timely",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/timely.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/timely.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -17,7 +17,9 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.apettit.timely",
+      "buildNumber": "1.0.0"
     },
     "android": {
       "adaptiveIcon": {

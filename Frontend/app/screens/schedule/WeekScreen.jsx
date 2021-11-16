@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 
-function CreateScheduleScreen(props) {
+function WeekScreen(props) {
   return (
     <View style={styles.container}>
-        
+        <Text>Week Schedule</Text>
     </View>
   );
 }
@@ -13,4 +13,4 @@ const styles = StyleSheet.create({
   container: {}
 });
 
-export default CreateScheduleScreen;
+export default WeekScreen;

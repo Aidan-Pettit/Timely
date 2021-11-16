@@ -1,47 +1,52 @@
-import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import React, { useState } from 'react';
+import { View, StyleSheet } from 'react-native';
+import createAsyncKey from '../services/storage/createAsyncKey';
+import getSchedule from '../services/storage/getSchedule'
 
-function TimeSlot({activity, time}) {
-    let colour = 'tomato'
-    let AMorPM = 'AM'
-    let stime = time
 
-    if (activity == 'sleep') colour = 'blue'
-    if (activity == 'eat') colour = 'orange'
-    if (activity == 'work') colour = 'red'
-    if (activity == 'rest') colour = 'green'
-    if (activity == 'exercise') colour = 'gold'
-    if (activity == 'play') colour = 'hotpink'
+function TimeSlot({hour, year, month, day}) {
+    const [title, setTitle] = useState('')
+    const [description, setDescription] = useState('')
 
-    if (time >= 12) {
-        stime = time - 12
-        AMorPM = 'PM'
+    useEffect(() => {
+        getActivity()
+    }, [])
+    
+    const getActivity = async () => {
+        const key = createAsyncKey(year, month, day, hour);
+        console.log(key)
+        
+        const activity = await getSchedule(key)
+
+        setTitle(activity.title)
+        setDescription(activity.description)
     }
 
-    if (stime == 0) stime = 12
-  return (
-    <View style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: colour,
-        height: 65,
-        borderWidth: 5,
-        borderColor: 'skyblue',
-        margin: 10
-    }}>
-        <Text style={styles.text}>{activity}</Text>
+    if (!year) year = '2021'
 
-        <Text style={styles.text}>{stime} {AMorPM}</Text>
-    </View>
+  return (
+    <>
+        <View style={styles.container}>
+            <Text>{hour}</Text>
+            <Text>{title}</Text>
+            <Text>{description}</Text>
+        </View>
+        <View>
+            <Modal>
+                <Text>Create New Activity</Text>
+            </Modal>
+        </View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {},
-
-  text: {
-    color: 'white'
+  container: {
+    flex: 1,
+    height: 65,
+    width: 400,
+    borderBottomWidth: 2,
+    borderBottomColor: 'black'
   }
 });
 
